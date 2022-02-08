@@ -2,6 +2,7 @@ public class MultiplesTest {
     public static void main(String[] args) {
         Multiples multiples = new Multiples();
         // 3+ 5+ 6+ 9 = 23
+        // 3, 5, 6, 9, 10, 12, 15, 18 - 78
         long three_sum = 0;
         int i = 1;
         long three_multiples = 3;
@@ -33,11 +34,30 @@ public class MultiplesTest {
             } else break;
             three_multiples = multiples.mult(3, i);
             if (five_multiples < limit) {
-                if (five_sum % 3 != 0) sum += five_multiples;
+                if (five_multiples % 3 != 0) sum += five_multiples;
             }
             five_multiples = multiples.mult(5, i);
         }
         if (sum != 23)
             System.out.printf("The sum of the multiple of 3 and 5 should equal 23, but it actually is: %d\n", sum);
+
+        i = 1;
+        three_multiples = 3;
+        five_multiples = 5;
+        sum = 0;
+        limit = 20;
+        while (true) {
+            i++;
+            if (three_multiples < limit) {
+                sum += three_multiples;
+            } else break;
+            three_multiples = multiples.mult(3, i);
+            if (five_multiples < limit) {
+                if (five_multiples % 3 != 0) sum += five_multiples;
+            }
+            five_multiples = multiples.mult(5, i);
+        }
+        if (sum != 78)
+            System.out.printf("The sum of the multiple of 3 and 5 should equal 78, but it actually is: %d\n", sum);
     }
 }

@@ -3,11 +3,6 @@ public class Multiples {
         return n * i;
     }
 
-    public long secondFunc(long m, long n, int multiple) {
-        long m_multiple = m * multiple;
-        long n_multiple = n * multiple;
-        return m_multiple;
-    }
 
     public static void main(String[] args) {
         Multiples multiples = new Multiples();

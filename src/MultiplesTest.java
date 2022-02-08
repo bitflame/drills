@@ -1,63 +1,36 @@
-public class MultiplesTest {
-    public static void main(String[] args) {
-        Multiples multiples = new Multiples();
-        // 3+ 5+ 6+ 9 = 23
-        // 3, 5, 6, 9, 10, 12, 15, 18 - 78
-        long three_sum = 0;
-        int i = 1;
-        long three_multiples = 3;
-        while (three_multiples < 10) {
-            three_sum += three_multiples;
-            i++;
-            three_multiples = multiples.mult(3, i);
-        }
-        if (three_sum != 18) System.out.printf("The sum of multiples of 3 should equal 18, but it is: %d\n", three_sum);
-        long five_sum = 0;
-        i = 1;
-        long five_multiples = 5;
-        while (five_multiples < 10) {
-            five_sum += five_multiples;
-            i++;
-            five_multiples = multiples.mult(5, i);
-        }
-        if (five_sum != 5)
-            System.out.printf("The sum of the multiples of 5 under 10 should be 5, but it is: %d\n", five_sum);
-        i = 1;
-        three_multiples = 3;
-        five_multiples = 5;
-        long sum = 0;
-        int limit = 10;
-        while (true) {
-            i++;
-            if (three_multiples < limit) {
-                sum += three_multiples;
-            } else break;
-            three_multiples = multiples.mult(3, i);
-            if (five_multiples < limit) {
-                if (five_multiples % 3 != 0) sum += five_multiples;
-            }
-            five_multiples = multiples.mult(5, i);
-        }
-        if (sum != 23)
-            System.out.printf("The sum of the multiple of 3 and 5 should equal 23, but it actually is: %d\n", sum);
+import java.math.BigDecimal;
 
-        i = 1;
-        three_multiples = 3;
-        five_multiples = 5;
-        sum = 0;
-        limit = 20;
+public class MultiplesTest {
+    Multiples multiples = new Multiples();
+
+    public double useMultiple(int l) {
+        int i = 1;
+        double total = 0, three_multiples = 3, five_multiples = 5;
         while (true) {
             i++;
-            if (three_multiples < limit) {
-                sum += three_multiples;
+            if (three_multiples < l) {
+                total += three_multiples;
             } else break;
             three_multiples = multiples.mult(3, i);
-            if (five_multiples < limit) {
-                if (five_multiples % 3 != 0) sum += five_multiples;
+            if (five_multiples < l) {
+                if (five_multiples % 3 != 0) total += five_multiples;
             }
             five_multiples = multiples.mult(5, i);
         }
+        return total;
+    }
+
+    public static void main(String[] args) {
+        MultiplesTest multiplesTest = new MultiplesTest();
+        double sum = multiplesTest.useMultiple(10);
+        // 3+ 5+ 6+ 9 = 23
+        if (sum != 23)
+            System.out.printf("The sum of the multiple of 3 and 5 should equal 23, but it actually is: %f\n", sum);
+        else System.out.printf("Test with limit of 10 was successful\n");
+        sum = multiplesTest.useMultiple(20);
         if (sum != 78)
-            System.out.printf("The sum of the multiple of 3 and 5 should equal 78, but it actually is: %d\n", sum);
+            System.out.printf("The sum of the multiple of 3 and 5 should equal 78, but it actually is: %f\n", sum);
+        else System.out.printf("Test with limit of 20 was successful\n");
+        BigDecimal largeNumber = BigDecimal.valueOf(0);
     }
 }
